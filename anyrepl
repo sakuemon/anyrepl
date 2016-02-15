@@ -1,0 +1,54 @@
+anyrepl() {
+	# 引数
+	# 第一引数は言語
+	# それ以降の引数はreplコマンドへの引数
+
+	exists_command() {
+		ret=`/usr/bin/which -s $1`
+		return ret
+	}
+
+	usage() {
+		echo "Usage: anyrepl lang [options...]"
+	}
+
+
+	# main
+	args=($*)
+
+	if [[ $#args -le 0 ]]; then
+		usage
+		return 1
+	fi
+
+	lang=$args[1]
+	shift args
+
+	# 各言語ごとの処理
+	case "$lang" in
+		"php" | "PHP" )
+			repls=('psysh' 'php -a')
+			;;
+		"ruby" | "RUBY" )
+			repls=('pry' 'irb')
+			;;
+		"node" | "NODE" )
+			repls=('node')
+			;;
+		* )
+			echo "${lang} is not support."
+			return 1
+			;;
+	esac
+
+	for repl in $repls; do
+		exists_command ${repl}
+		if [[ $? -eq 0 ]]; then
+			echo "starting ${repl} $args"
+			${repl} $args
+			break
+		fi
+	done
+
+	return 0
+}
