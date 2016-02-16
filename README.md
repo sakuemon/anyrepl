@@ -1,8 +1,8 @@
 # anyrepl
 
-A zsh function for any language repl commands.
+A zsh function for any language's repl commands.
 
-# Support language and repl command
+# Support languages and repl commands
 ## php
 + psysh
 + php -a
@@ -24,3 +24,7 @@ execute php repl command
 anyrepl php
 ```
 
+need args?
+```
+anyrepl php vendor/autoload.php
+```
