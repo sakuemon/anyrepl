@@ -1,13 +1,11 @@
 anyrepl() {
-	# 引数
-	# 第一引数は言語
-	# それ以降の引数はreplコマンドへの引数
-
+	# find command
 	exists_command() {
 		ret=`/usr/bin/which -s $1`
 		return ret
 	}
 
+	# print usage
 	usage() {
 		echo "Usage: anyrepl lang [options...]"
 	}
@@ -24,7 +22,6 @@ anyrepl() {
 	lang=$args[1]
 	shift args
 
-	# 各言語ごとの処理
 	case "$lang" in
 		"php" | "PHP" )
 			repls=('psysh' 'php -a')
