@@ -28,3 +28,8 @@ need args?
 ```
 anyrepl php vendor/autoload.php
 ```
+
+# License
+* MIT
+see LICENSE.txt
+
